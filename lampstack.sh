@@ -52,4 +52,4 @@ cp ./stats.php /var/www/${domain_name}/stats.php
 # Call mysql.sh to do mysql things
 bash ./mysql.sh
 
-echo "Done. Check $( curl ifconfig.me )/stats.php"
+
