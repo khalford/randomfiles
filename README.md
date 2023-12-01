@@ -1,7 +1,7 @@
 # myLampstackProject
 Usage:
-Username in stats.php defaults to oxg98278. Change this to your user\n
-Database and table in stats.php defaults to GitHubStats and commit_stats\n
+Username in stats.php defaults to oxg98278. Change this to your user
+Database and table in stats.php defaults to GitHubStats and commit_stats
 /var/www/<domain> defaults to your username
 mysql database defaults to GitHubStats
 mysql table default to commit_stats
