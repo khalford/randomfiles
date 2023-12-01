@@ -74,5 +74,3 @@ username VARCHAR(255),
 no_commits INT,
 PRIMARY KEY(user_id)
 );"
-
-
