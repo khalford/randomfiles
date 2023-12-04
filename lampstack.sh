@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get username
-# If script run as sudo get sudo caller username
+# If script run as  get  caller username
 username=$USER
 if [ "$username" = root ]; then username=$SUDO_USER; fi
 
@@ -49,7 +49,7 @@ sed -i -e "s/<password>/"password"/g" ./stats.php
 cp ./stats.php /var/www/${domain_name}/stats.php
 
 # Assign variables
-database_name="GitHubStats"
+database_name="githubstats"
 passwd="password"
 
 # Create the MySQL database
@@ -61,16 +61,31 @@ mysql -e "CREATE USER '${username}'@'%' IDENTIFIED BY '$passwd';"
 # Grant the user permissions to the database
 mysql -e "GRANT ALL ON ${database_name}.* TO '${username}'@'%';"
 
-# Assign table name
-table_name="commit_stats"
-
 # Assign the password
 password="password"
 
 # Create the table in the database
-mysql -u $username -p$password -e "CREATE TABLE ${database_name}.${table_name} (
+mysql -u $username -p$password -e "CREATE TABLE ${database_name}.scd_openstack_utils_commits (
 user_id INT AUTO_INCREMENT,
 username VARCHAR(255),
 no_commits INT,
 PRIMARY KEY(user_id)
 );"
+
+# Create the table in the database
+mysql -u $username -p$password -e "CREATE TABLE ${database_name}.st2_cloud_pack_commits (
+user_id INT AUTO_INCREMENT,
+username VARCHAR(255),
+no_commits INT,
+PRIMARY KEY(user_id)
+);"
+
+# Install grafana
+apt-get install -y apt-transport-https software-properties-common wget
+mkdir -p /etc/apt/keyrings/
+wget -q -O - https://apt.grafana.com/gpg.key | gpg --dearmor |  tee /etc/apt/keyrings/grafana.gpg > /dev/null
+echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main" |  tee -a /etc/apt/sources.list.d/grafana.list
+apt-get update
+apt-get install grafana
+
+
