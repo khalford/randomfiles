@@ -1,3 +1,5 @@
+Now archived. Project continues at https://github.com/khalford/myWebApp
+
 # myLampstackProject
 Usage:
 Username in stats.php defaults to oxg98278. Change this to your user
